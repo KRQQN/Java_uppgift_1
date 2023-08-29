@@ -12,7 +12,7 @@ public class Main {
 
             renderMenu();
             Scanner sc = new Scanner(System.in);
-            String input = sc.nextLine();
+            String input = sc.nextLine().toUpperCase();
 
             switch(input){
 
