@@ -1,19 +1,55 @@
-package org.example;
+package org.uppgift1;
+
+import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        boolean running = true;
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        while(running) {
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+            renderMenu();
+            Scanner sc = new Scanner(System.in);
+            String input = sc.nextLine();
+
+            switch(input){
+
+                case "1" -> {
+                    ElectricityPriceAnalyzer.setPrices(sc);
+                    sc.nextLine();
+                }
+                case "2" -> {
+                    ElectricityPriceAnalyzer.minMaxAveragePrice();
+                    sc.nextLine();
+                }
+                case "3" -> {
+                    ElectricityPriceAnalyzer.sortByPrice();
+                    sc.nextLine();
+                }
+                case "4" -> {
+                    // Argument is the width of the hourspan
+                    ElectricityPriceAnalyzer.optimalChargingHours(4);
+                    sc.nextLine();
+                }
+                case "E" -> {
+                    sc.close();
+                    running = false;
+                }
+                default -> System.out.println("Error: Incorrect input\n");
+            }
         }
+    }
+
+    public static void renderMenu() {
+        System.out.println("""
+                Elpriser
+                ========
+                1. Inmatning
+                2. Min, Max och Medel
+                3. Sortera
+                4. Bästa Laddningstid (4h)
+                e. Avsluta""");
     }
 }
